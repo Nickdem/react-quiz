@@ -120,20 +120,20 @@ export function quizAnswerClick(answerId) {
 
       dispatch(quizSetState({[answerId]: 'success'}, results))
 
-			const timeout = window.setTimeout(() => {
-				if (isQuizFinished(state)) {
-          dispatch(finishQuiz())
-				} else {
-          dispatch(quizNextQuestion(state.activeQuestion + 1))
-				}
-
-				window.clearTimeout(timeout)
-			}, 1000)
-
 		} else {
       results[question.id] = 'error'
       dispatch(quizSetState({[answerId]: 'error'}, results))
 		}
+
+    const timeout = window.setTimeout(() => {
+      if (isQuizFinished(state)) {
+        dispatch(finishQuiz())
+      } else {
+        dispatch(quizNextQuestion(state.activeQuestion + 1))
+      }
+
+      window.clearTimeout(timeout)
+    }, 1000)
   }
 }
 
